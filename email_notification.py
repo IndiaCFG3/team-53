@@ -36,7 +36,7 @@ def message(subject="Monthly Report", text="", img=None, attachment=None):
             msg.attach(file)
     return msg
 
-def send_email(SENDER_EMAIL, SENDER_PASSWORD, SUBJECT, TEXT="", IMG=None, ATTACHMENT=None):
+def send_email(SENDER_EMAIL, SENDER_PASSWORD, RECIEVER_EMAIL, SUBJECT, TEXT="", IMG=None, ATTACHMENT=None):
     
     print('initiating...')
     smtp = smtplib.SMTP('smtp-mail.outlook.com', port='587')
@@ -55,8 +55,8 @@ def send_email(SENDER_EMAIL, SENDER_PASSWORD, SUBJECT, TEXT="", IMG=None, ATTACH
     msg = message(subject=SUBJECT, text=TEXT, img=IMG, attachment=ATTACHMENT)
     
     print('sending mail...')
-    smtp.sendmail('adarshjoshy@hotmail.com',
-                  'adarshjoshy2000@gmail.com',
+    smtp.sendmail(SENDER_EMAIL,
+                  RECIEVER_EMAIL,
                   msg.as_string())
     
     print("mail sent!")
@@ -64,4 +64,4 @@ def send_email(SENDER_EMAIL, SENDER_PASSWORD, SUBJECT, TEXT="", IMG=None, ATTACH
     smtp.quit()
 
 #testing...    
-#send_email(SENDER_EMAIL="", SENDER_PASSWORD="", SUBJECT="Test", TEXT="test message")
+#send_email(SENDER_EMAIL="", SENDER_PASSWORD="", RECIEVER_EMAIL="", SUBJECT="Test", TEXT="test message")
