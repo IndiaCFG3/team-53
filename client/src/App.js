@@ -6,6 +6,7 @@ import Integrations from "./components/route/Integrations";
 import Orders from "./components/route/Orders";
 import Reports from "./components/route/Reports";
 import Customer from "./components/route/Customer";
+import Blog from "./components/route/Blog";
 
 function App() {
   return (
@@ -16,10 +17,10 @@ function App() {
             {/* <Route path="/" component={Home} exact/>
              <Route path="/about" component={About}/> */}
             <Route path="/" component={Dashboard} exact />
-            <Route path="/Integrations" component={Integrations} />
-            <Route path="/Orders" component={Orders} />
-            <Route path="/Reports" component={Reports} />
-            <Route path="/Customer" component={Customer} />
+            <Route path="/Integrations" component={Blog} />
+            <Route path="/Orders" component={Blog} />
+            <Route path="/Reports" component={Blog} />
+            <Route path="/Customer" component={Blog} />
 
             {/* <Route component={Error} /> */}
           </Switch>
