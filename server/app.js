@@ -15,7 +15,7 @@ const session = require('express-session');
 const http = require('http');
 const configDB = require('./config/database');
 // const verifymail = require('./routes/verifymail');
-
+const cors = require('cors');
 mongoose.connect(configDB.url, {
   useNewUrlParser: true,
   useUnifiedTopology: true
@@ -36,11 +36,18 @@ app.use(session({
   secret: process.env.SESSION_SECRET
 }));
 
+app.use(
+  cors({
+    origin: "http://localhost:3000", // <-- location of the react app were connecting to
+    credentials: true,
+  })
+);
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(flash());
 // require('./routes/UserLogin')(app, passport);
-
-app.listen(3000, function(err) {
-  console.log('Server started on 3000');
+//routes
+require('./routes/UserLogin')(app, passport);
+app.listen(4000, function(err) {
+  console.log('Server started on 4000');
 });
