@@ -7,6 +7,8 @@ import Orders from "./components/route/Orders";
 import Reports from "./components/route/Reports";
 import Customer from "./components/route/Customer";
 import Blog from "./components/route/Blog";
+// import SignUp from "./components/Signup";
+import Signin from "./components/Signin";
 
 function App() {
   return (
@@ -16,11 +18,14 @@ function App() {
           <Switch>
             {/* <Route path="/" component={Home} exact/>
              <Route path="/about" component={About}/> */}
-            <Route path="/" component={Dashboard} exact />
-            <Route path="/Integrations" component={Blog} />
-            <Route path="/Orders" component={Blog} />
+            <Route exact path="/" component={Signin} />
+            {/* <Route path="/Signup" component={SignUp} /> */}
+            <Route path="/dashboard" component={Dashboard} />
+            <Route path="/Uploads" component={Blog} />
+            {/* <Route path="/Orders" component={Blog} /> */}
+
             <Route path="/Reports" component={Blog} />
-            <Route path="/Customer" component={Blog} />
+            <Route path="/Student" component={Blog} />
 
             {/* <Route component={Error} /> */}
           </Switch>

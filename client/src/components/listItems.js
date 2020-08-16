@@ -10,6 +10,7 @@ import BarChartIcon from "@material-ui/icons/BarChart";
 import LayersIcon from "@material-ui/icons/Layers";
 import AssignmentIcon from "@material-ui/icons/Assignment";
 import { NavLink } from "react-router-dom";
+const axios = require("axios");
 
 export const mainListItems = (
   <div>
@@ -19,17 +20,17 @@ export const mainListItems = (
       </ListItemIcon>
       <ListItemText primary="Dashboard" />
     </ListItem>
-    <ListItem button component={NavLink} to="/Orders">
+    {/* <ListItem button component={NavLink} to="/Orders">
       <ListItemIcon>
         <ShoppingCartIcon />
       </ListItemIcon>
       <ListItemText primary="Orders" />
-    </ListItem>
-    <ListItem button component={NavLink} to="/Customer">
+    </ListItem> */}
+    <ListItem button component={NavLink} to="/Students">
       <ListItemIcon>
         <PeopleIcon />
       </ListItemIcon>
-      <ListItemText primary="Customers" />
+      <ListItemText primary="Students" />
     </ListItem>
     <ListItem button component={NavLink} to="/Reports">
       <ListItemIcon>
@@ -37,19 +38,38 @@ export const mainListItems = (
       </ListItemIcon>
       <ListItemText primary="Reports" />
     </ListItem>
-    <ListItem button component={NavLink} to="/Integrations">
+    <ListItem button component={NavLink} to="/Uploads">
       <ListItemIcon>
         <LayersIcon />
       </ListItemIcon>
-      <ListItemText primary="Integrations" />
+      <ListItemText primary="Uploads" />
     </ListItem>
   </div>
 );
 
+async function makeGetRequest() {
+  let res = await axios.get(
+    "https://api.jsonbin.io/b/5f38eb9f4d9399103615c7bd"
+  );
+
+  let data = res.data;
+  console.log(data);
+}
+
+//makeGetRequest();
 export const secondaryListItems = (
   <div>
     <ListSubheader inset>Saved reports</ListSubheader>
-    <ListItem button>
+    <ListItem
+      button
+      onClick={() => {
+        axios.get(`http://localhost:5000/api/items`).then((res) => {
+          const items = res.data;
+          this.setState({ items });
+          console.log(items);
+        });
+      }}
+    >
       <ListItemIcon>
         <AssignmentIcon />
       </ListItemIcon>
