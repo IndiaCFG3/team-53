@@ -14,9 +14,10 @@ import smtplib
 # r=requests.get(url)
 # mail_data=r.json()
 mail_data=json.loads(url)
-mail_text=mail_data['ID']
+mail_ID=mail_data['ID']
 mail_text=mail_data['Text']
 mail_img=mail_data['Image']
+mail_sub=mail_data['Subject']
 
 
 def message(subject="Monthly Report", text="", img=None, attachment=None):
