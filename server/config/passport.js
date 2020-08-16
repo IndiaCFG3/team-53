@@ -6,15 +6,27 @@ const User = require('../model/user');
 // const configAuth = require('./auth');
 
 module.exports = function(passport) {
+  // 
+  // passport.serializeUser(function(user, done) {
+  //   done(null, user.id);
+  // });
+  // passport.deserializeUser(function(id, done) {
+  //   User.findById(id, function(err, user) {
+  //     done(err, user);
+  //   });
+  // });
 
-  passport.serializeUser(function(user, done) {
-    done(null, user.id);
+  passport.serializeUser((user, cb) => {
+  cb(null, user.id);
+});
+passport.deserializeUser((id, cb) => {
+  User.findOne({ _id: id }, (err, user) => {
+    const userInformation = {
+      username: user.username,
+    };
+    cb(err, userInformation);
   });
-  passport.deserializeUser(function(id, done) {
-    User.findById(id, function(err, user) {
-      done(err, user);
-    });
-  });
+});
 
   passport.use('local-signup-user', new localStrategy_user({
       usernameField: 'email',
@@ -81,26 +93,43 @@ module.exports = function(passport) {
         });
       }));
 
-  passport.use('local-login-user', new localStrategy_user({
-      usernameField: 'username',
-      passwordField: 'password',
-      passReqToCallback: true
-    },
-    function(req, username, password, done) {
-      User.findOne({
-        'Email': username
-      }, function(err, user) {
-        if (err)
-          return done(err);
+  // passport.use('local-login-user', new localStrategy_user({
+  //     usernameField: 'username',
+  //     passwordField: 'password',
+  //     passReqToCallback: true
+  //   },
+  //   function(req, username, password, done) {
+  //     User.findOne({
+  //       'Email': username
+  //     }, function(err, user) {
+  //       if (err)
+  //         return done(err);
+  //
+  //       if (!user)
+  //         return done(null, false, req.flash('loginMessage', 'No user found.')); // req.flash is the way to set flashdata using connect-flash
+  //
+  //       if (!user.validPassword(password))
+  //         return done(null, false, req.flash('loginMessage', 'Oops! Wrong password.')); // create the loginMessage and save it to session as flashdata
+  //       return done(null, user);
+  //     });
+  //   }));
 
-        if (!user)
-          return done(null, false, req.flash('loginMessage', 'No user found.')); // req.flash is the way to set flashdata using connect-flash
-
-        if (!user.validPassword(password))
-          return done(null, false, req.flash('loginMessage', 'Oops! Wrong password.')); // create the loginMessage and save it to session as flashdata
-        return done(null, user);
+    passport.use('local-login-user',
+    new localStrategy_user((username, password, done) => {
+      User.findOne({ username: username }, (err, user) => {
+        if (err) throw err;
+        if (!user) return done(null, false);
+        bcrypt.compare(password, user.password, (err, result) => {
+          if (err) throw err;
+          if (result === true) {
+            return done(null, user);
+          } else {
+            return done(null, false);
+          }
+        });
       });
-    }));
+    })
+  );
 
     passport.use('local-login-emp', new localStrategy_emp({
         usernameField: 'username',
