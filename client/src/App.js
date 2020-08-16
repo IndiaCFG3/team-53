@@ -1,34 +1,38 @@
 import React from "react";
+
+import logo from "./logo.svg";
 import "./App.css";
+import SignUp from "./components/SignUp";
+import SignIn from "./components/SignIn";
 import Dashboard from "./components/Dashboard";
-import { BrowserRouter, Route, Switch } from "react-router-dom";
+
 import Integrations from "./components/route/Integrations";
 import Orders from "./components/route/Orders";
 import Reports from "./components/route/Reports";
 import Customer from "./components/route/Customer";
 import Blog from "./components/route/Blog";
-// import SignUp from "./components/Signup";
+
+import SignUp from "./components/Signup";
 import Signin from "./components/Signin";
+import { BrowserRouter, Switch, Route } from "react-router-dom";
+
 
 function App() {
   return (
     <BrowserRouter>
+
       <div className="App">
-        <div>
-          <Switch>
-            {/* <Route path="/" component={Home} exact/>
-             <Route path="/about" component={About}/> */}
-            <Route exact path="/" component={Signin} />
-            {/* <Route path="/Signup" component={SignUp} /> */}
-            <Route path="/dashboard" component={Dashboard} />
-            <Route path="/Uploads" component={Blog} />
-            {/* <Route path="/Orders" component={Blog} /> */}
 
-            <Route path="/Reports" component={Blog} />
-            <Route path="/Student" component={Blog} />
-
-            {/* <Route component={Error} /> */}
-          </Switch>
+      <div>
+        <Switch>
+          <Route path="/" component={SignIn} />
+          <Route path="/SignUp" component={SignUp} />
+          <Route path="/SignIn" component={SignIn} />
+          <Route path="/dashboard" component={Dashboard} />
+          <Route path="/Uploads" component={Blog} />
+          <Route path="/Reports" component={Blog} />
+          <Route path="/Student" component={Blog} />
+        </Switch>
         </div>
       </div>
     </BrowserRouter>

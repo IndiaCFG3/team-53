@@ -60,6 +60,7 @@ async function makeGetRequest() {
 export const secondaryListItems = (
   <div>
     <ListSubheader inset>Saved reports</ListSubheader>
+
     <ListItem
       button
       onClick={() => {
@@ -70,6 +71,9 @@ export const secondaryListItems = (
         });
       }}
     >
+
+    <!--ListItem button onClick={makeGetRequest} -->
+
       <ListItemIcon>
         <AssignmentIcon />
       </ListItemIcon>
