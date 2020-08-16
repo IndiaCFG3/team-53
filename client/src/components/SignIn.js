@@ -93,15 +93,17 @@ export default function SignIn() {
             control={<Checkbox value="remember" color="primary" />}
             label="Remember me"
           />
-          <Button
-            type="submit"
-            fullWidth
-            variant="contained"
-            color="primary"
-            className={classes.submit}
-          >
-            Sign In
-          </Button>
+          <NavLink to="/dashboard">
+            <Button
+              type="submit"
+              fullWidth
+              variant="contained"
+              color="primary"
+              className={classes.submit}
+            >
+              Sign In
+            </Button>
+          </NavLink>
           <Grid container>
             <Grid item xs>
               <Link path="#" variant="body2">
@@ -109,7 +111,7 @@ export default function SignIn() {
               </Link>
             </Grid>
             <Grid item>
-              <Link to="/SignUp">{"Don't have an account? Sign Up"}</Link>
+              <NavLink to="/SignUp">{"Don't have an account? Sign Up"}</NavLink>
             </Grid>
           </Grid>
         </form>
