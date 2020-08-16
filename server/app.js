@@ -21,6 +21,23 @@ mongoose.connect(configDB.url, {
   useUnifiedTopology: true
 });
 
+const { spawn } = require('child_process');
+
+// const childPython = spawn('python', ['--version']);
+const childPython = spawn('python', ['model_py/Employee_Queries.py'],[{'EID':1,'Name':'Adarsh','Role':'HR','Manager':'Nishant','Leaves':3,'Rating':4},{'EID':1,'Name':'Nishant','Role':'Manager','Manager':0,'Leaves':5,'Rating':3}]);
+
+childPython.stdout.on('data',(data)=>{
+  console.log('stdout:'+data);
+});
+
+childPython.stderr.on('data',(data)=>{
+  console.error('stderr:'+data);
+});
+
+childPython.on('close',(code)=>{
+  console.log('child process exited with code : '+code);
+});
+
 require('./config/passport')(passport);
 
 var app = express();
