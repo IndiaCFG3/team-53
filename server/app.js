@@ -1,28 +1,27 @@
 // jshint esversion:6
 
 require("dotenv").config();
-const createError = require('http-errors');
-const express = require('express');
-const path = require('path');
-const cookieParser = require('cookie-parser');
-const logger = require('morgan');
-const bodyParser = require('body-parser');
-const mongoose = require('mongoose');
-const passport = require('passport');
-const flash = require('connect-flash');
-const morgan = require('morgan');
-const session = require('express-session');
-const http = require('http');
-const configDB = require('./config/database');
+const createError = require("http-errors");
+const express = require("express");
+const path = require("path");
+const cookieParser = require("cookie-parser");
+const logger = require("morgan");
+const bodyParser = require("body-parser");
+const mongoose = require("mongoose");
+const passport = require("passport");
+const flash = require("connect-flash");
+const morgan = require("morgan");
+const session = require("express-session");
+const http = require("http");
+const configDB = require("./config/database");
 // const verifymail = require('./routes/verifymail');
 
-const cors = require('cors');
+const cors = require("cors");
 
 mongoose.connect(configDB.url, {
   useNewUrlParser: true,
-  useUnifiedTopology: true
+  useUnifiedTopology: true,
 });
-
 
 //const { spawn } = require('child_process');
 
@@ -41,22 +40,24 @@ mongoose.connect(configDB.url, {
 //  console.log('child process exited with code : '+code);
 //});
 
-
-require('./config/passport')(passport);
+require("./config/passport")(passport);
 
 var app = express();
 
-app.use(logger('dev'));
+app.use(logger("dev"));
 app.use(express.json());
-app.use(express.urlencoded({
-  extended: false
-}));
+app.use(
+  express.urlencoded({
+    extended: false,
+  })
+);
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
-app.use(session({
-  secret: process.env.SESSION_SECRET
-}));
-
+app.use(express.static(path.join(__dirname, "public")));
+app.use(
+  session({
+    secret: process.env.SESSION_SECRET,
+  })
+);
 
 app.use(
   cors({
@@ -70,14 +71,13 @@ app.use(passport.session());
 app.use(flash());
 // require('./routes/UserLogin')(app, passport);
 
-require('./routes/UserLogin')(app, passport);
+require("./routes/UserLogin")(app, passport);
 
-app.listen(3000, function(err) {
-  console.log('Server started on 3000');
+//app.listen(3000, function(err) {
+//console.log('Server started on 3000');
 
 //routes
 
-//app.listen(4000, function(err) {
-//  console.log('Server started on 4000');
-
+app.listen(4000, function (err) {
+  console.log("Server started on 4000");
 });

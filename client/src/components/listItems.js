@@ -10,6 +10,7 @@ import BarChartIcon from "@material-ui/icons/BarChart";
 import LayersIcon from "@material-ui/icons/Layers";
 import AssignmentIcon from "@material-ui/icons/Assignment";
 import { NavLink } from "react-router-dom";
+//import axios from "axios";
 const axios = require("axios");
 
 export const mainListItems = (
@@ -60,7 +61,6 @@ async function makeGetRequest() {
 export const secondaryListItems = (
   <div>
     <ListSubheader inset>Saved reports</ListSubheader>
-
     <ListItem
       button
       onClick={() => {
@@ -70,10 +70,8 @@ export const secondaryListItems = (
           console.log(items);
         });
       }}
-    >
-
-    <!--ListItem button onClick={makeGetRequest} -->
-
+    ></ListItem>
+    <ListItem button onClick={makeGetRequest}>
       <ListItemIcon>
         <AssignmentIcon />
       </ListItemIcon>

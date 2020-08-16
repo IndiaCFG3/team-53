@@ -12,6 +12,7 @@ import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
+//import Axios from "axios";
 
 function Copyright() {
   return (
@@ -52,6 +53,18 @@ export default function SignUp() {
   const [lname, setlname] = useState("");
   const [regmail, setregValue] = useState("");
   const [regpassword, setregPassword] = useState("");
+
+  /*const register = () => {
+    Axios({
+      method: "POST",
+      data: {
+        username: regmail,
+        password: regpassword,
+      },
+      withCredentials: true,
+      url: "http://localhost:4000/signup-user",
+    }).then((res) => console.log(res));
+  };*/
 
   return (
     <Container component="main" maxWidth="xs">

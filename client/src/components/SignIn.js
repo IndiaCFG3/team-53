@@ -13,6 +13,7 @@ import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 import { NavLink } from "react-router-dom";
+//import Axios from "axios";
 
 function Copyright() {
   return (
@@ -51,7 +52,21 @@ export default function SignIn() {
   const classes = useStyles();
   const [mail, setValue] = useState("");
   const [password, setPassword] = useState("");
-
+  const Validate = () => {
+    if (mail === "admin") return "/dashboard";
+    else return "/dashboard2";
+  };
+  /*const login = () => {
+    Axios({
+      method: "POST",
+      data: {
+        username: mail,
+        password: password,
+      },
+      withCredentials: true,
+      url: "http://localhost:4000/login-user",
+    }).then((res) => console.log(res));
+  };*/
   return (
     <Container component="main" maxWidth="xs">
       <CssBaseline />
@@ -93,7 +108,7 @@ export default function SignIn() {
             control={<Checkbox value="remember" color="primary" />}
             label="Remember me"
           />
-          <NavLink to="/dashboard">
+          <NavLink to={Validate}>
             <Button
               type="submit"
               fullWidth
@@ -111,7 +126,7 @@ export default function SignIn() {
               </Link>
             </Grid>
             <Grid item>
-              <NavLink to="/SignUp">
+              <NavLink to="/SignUp" activeClassName="selectedLink" strict>
                 <Link to="/SignUp">{"Don't have an account? Sign Up"}</Link>
               </NavLink>
             </Grid>
