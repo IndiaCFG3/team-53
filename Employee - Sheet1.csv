@@ -1,0 +1,7 @@
+EID,Name,Role,Manager,Leaves,Rating
+1,Adarsh,HR,Nishant,3,4
+2,Nishant,Manager,,5,3
+3,Hasifa,IT,Sanjana,2,3
+4,Yasaswini,Operations,,5,4
+5,Sanjana,IT,,8,5
+6,Ishan,Audit,,10,2

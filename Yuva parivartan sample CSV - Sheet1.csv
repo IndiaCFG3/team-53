@@ -1,0 +1,10 @@
+,,,,,,,,,
+For batches,,,,,,,,,
+Region,Center Name,LDCM Name,Reportee,Batch Type,Batch Code,Course Name,Course Name2,Status,Start Date
+<Region code>,<Center Name>,<Center Manager Name>,<Reportee name>,<Batch type>,<Batch code>,<Course Name>,,<Status>,30/10/2018
+For Passout,,,,,,,,,
+Region,LDCM Name,LDC Name,Batch Code,Status,Start Date,End Date,Course Name,Full Name,DOB
+<Region code>,<Center Manager Name>,<Center location name>,<Batch code>,<Status>,<Start date>,<End date>,<Course Name>,<Student full name>,02/11/99
+Placement(APP),,,,,<Start date>,,,,
+Region,Reportee,LDCM,LDC Name,Batch Code,Course Name,Start Date,End Date,Student Id,Student Name
+<Region code>,<Reportee name>,<Center Manager Name>,<Center location name>,<Batch code>,<Course Name>,<Start date>,<End date>,<Student ID>,Mahendra Sahu
