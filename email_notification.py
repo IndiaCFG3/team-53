@@ -4,6 +4,7 @@ from email.mime.image import MIMEImage
 from email.mime.application import MIMEApplication
 from email.mime.multipart import MIMEMultipart
 import smtplib
+import json
 
 def message(subject="Monthly Report", text="", img=None, attachment=None):
     msg = MIMEMultipart()
@@ -62,6 +63,34 @@ def send_email(SENDER_EMAIL, SENDER_PASSWORD, RECIEVER_EMAIL, SUBJECT, TEXT="", 
     print("mail sent!")
                   
     smtp.quit()
+    
+    
+def send_alert():
+    # REQUEST RECIEVED FROM ATTENDANCE BUTTON ON DASHBOARD:
+    x =  '{ "email":"hr@hotmail.com", "names": ["Nishant", "Ishan", "Adarsh"], "attendance": ["82", "45", "25"]}'
+    # parse x:
+    y = json.loads(x)
+        
+    defaulters = []
+    for i in range(len(y['attendance'])):
+        if int(y['attendance'][i]) < 50:
+            defaulters.append(y['names'][i])
+    print(defaulters)
+    
+    # message to be sent
+    message = "Dear User\n\nThe students who have attendance less than 50% are:\n"
+    index = 1
+    for name in defaulters:
+        message += "{}. {}\n".format(index, name)
+        index += 1
+    
+    message += "\nBest Regards\nYuva Parivartan"
+    
+    send_email(SENDER_EMAIL="<--COMPANY EMAIL-->", SENDER_PASSWORD="<--COMPANY PASSWORD-->", 
+               RECIEVER_EMAIL=y['email'], 
+               SUBJECT="Attendance Defaulters", 
+               TEXT=message)
 
+send_alert()
 #testing...    
 #send_email(SENDER_EMAIL="", SENDER_PASSWORD="", RECIEVER_EMAIL="", SUBJECT="Test", TEXT="test message")
