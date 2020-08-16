@@ -60,7 +60,20 @@ async function makeGetRequest() {
 export const secondaryListItems = (
   <div>
     <ListSubheader inset>Saved reports</ListSubheader>
-    <ListItem button onClick={makeGetRequest}>
+
+    <ListItem
+      button
+      onClick={() => {
+        axios.get(`http://localhost:5000/api/items`).then((res) => {
+          const items = res.data;
+          this.setState({ items });
+          console.log(items);
+        });
+      }}
+    >
+
+    <!--ListItem button onClick={makeGetRequest} -->
+
       <ListItemIcon>
         <AssignmentIcon />
       </ListItemIcon>
