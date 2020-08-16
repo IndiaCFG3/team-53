@@ -1,10 +1,25 @@
 import os
+import sys
+import json
+import requests
 from email.mime.text import MIMEText
 from email.mime.image import MIMEImage
 from email.mime.application import MIMEApplication
 from email.mime.multipart import MIMEMultipart
 import smtplib
 import json
+
+
+## Fetching Email Data
+# url=''
+# r=requests.get(url)
+# mail_data=r.json()
+mail_data=json.loads(url)
+mail_ID=mail_data['ID']
+mail_text=mail_data['Text']
+mail_img=mail_data['Image']
+mail_sub=mail_data['Subject']
+
 
 def message(subject="Monthly Report", text="", img=None, attachment=None):
     msg = MIMEMultipart()
